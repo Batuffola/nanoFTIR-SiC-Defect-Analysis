@@ -1,13 +1,13 @@
 # Compressed Sensing in nano-FTIR Spectroscopy of SiC Microchips
 
-This repository documents selected analysis workflows developed during my Bachelor's thesis at the Physikalisch-Technische Bundesanstalt (PTB) and Freie Universität Berlin.  
+This repository presents selected analysis workflows developed during my Bachelor's thesis at the Physikalisch-Technische Bundesanstalt (PTB) and Freie Universität Berlin.  
 The research focuses on applying **compressed sensing** techniques in **nano-FTIR spectroscopy** of **SiC microchip structures**, utilizing synchrotron-based infrared radiation (BESSY II) to enhance spatial and spectral resolution.
 
 ---
 
 ## 📚 Project Overview
 
-The goal was to investigate how **random subsampling** of interferometric measurement points impacts the quality of reconstructed nano-FTIR spectra. The objective was to **optimize measurement time** while preserving **signal integrity** in reconstructed data.
+The goal was to investigate how **random and structured subsampling** of interferometric measurement points affects the quality of reconstructed nano-FTIR spectra. The objective was to **reduce measurement time** while preserving **signal integrity** in reconstructed data.
 
 Measurements were conducted under **Strahlenschutz (radiation safety)** protocols with synchrotron IR sources.
 
@@ -18,83 +18,116 @@ Measurements were conducted under **Strahlenschutz (radiation safety)** protocol
 ```bash
 notebooks/
 ├── Random-Subsampling_20.ipynb
-├── Random-Subsampling_30.ipynb
-├── Random-Subsampling_40.ipynb
-├── Random-Subsampling_45.ipynb
-├── Random-Subsampling_50.ipynb
-├── Random-Subsampling_60.ipynb
-├── Random Subsampling SNR-Distribution.ipynb
-├── Grid_Subsampling_45.ipynb
-├── Equidistant Subsampling_45.ipynb
+├── ...
 ├── White-Light Subsampling_45.ipynb
 ├── Compressed Measurements/
-│   └── [Exploratory notebooks: grid, random, white-light comparisons]
+│   └── [Exploratory notebooks]
+figures/
+├── Regionen S Bg.png
+├── 45randS1good.pdf
+├── 45randS2good.pdf
+├── 45randBGgood.pdf
+├── SNRSamplingvBox.pdf
+├── grid cm maxI.PNG
+├── grid cm peakposition.PNG
+├── HSA cm peakposition.PNG
+├── hyper(topo).png
 thesis/
 └── BSc_BV.pdf
 ```
 
 ---
 
+## 🧪 Signal Regions
+
+To assess reconstruction quality, three key spatial regions were defined:
+- **S1** – Broad crack
+- **S2** – Narrow crack
+- **Bg** – Background
+
+This segmentation is shown in the region map below:
+
+![Signal Region Map](Figures/Regionen S Bg.png)
+
+---
+
 ## 🎯 Objectives
 
-- Determine the minimum number of interferometer positions necessary to achieve reliable spectral reconstructions.
-- Quantify the impact of different **subsampling strategies** on spectral quality.
-- Evaluate signal-to-noise ratios (SNR) in regions of interest (e.g., cracks in SiC structures).
+- Determine the minimal number of interferometer positions needed for reliable reconstruction.
+- Compare reconstruction quality across subsampling strategies.
+- Quantify Signal-to-Noise Ratio (SNR) degradation in each region (S1, S2, Bg).
 
 ---
 
-## 🧪 Subsampling Strategies Evaluated
+## 🔬 Visual Comparisons of Subsampling Results
 
-| Strategy            | Description |
-|---------------------|--------------|
-| **Random**           | Randomly selected interferometer points (20–60 out of 400) |
-| **Grid**             | Regularly spaced points (grid sampling) |
-| **Equidistant**      | Uniform sampling intervals |
-| **White-Light**      | Sampling aligned with white-light fringe positions |
+### Random Subsampling (45 positions / ~11.25%)
 
-Each strategy was tested across multiple sampling densities, including 5%, 7.5%, 10%, 11.25%, 12.5%, and 15% of the full interferogram.
+Reconstruction of example spectra from each region using 45 randomly selected interferometer points.
 
----
+- **S1 – Broad crack** (high fidelity):
 
-## 📊 Analysis Overview
+![S1 random 45](figures/45randS1good.pdf)
 
-Each notebook demonstrates:
+- **S2 – Narrow crack** (finer detail loss):
 
-- Loading and preprocessing of interferograms
-- Application of compressed sensing reconstruction
-- Visualization of peak maps and spectral reconstructions
-- Signal-to-noise ratio (SNR) analysis across two primary feature regions (S1 and S2) and background (Bg)
-- Comparative boxplots summarizing SNR behavior under different sampling densities
+![S2 random 45](figures/45randS2good.pdf)
 
-The notebook `Random Subsampling SNR-Distribution.ipynb` compares random sampling strategies across all tested densities.
+- **Bg – Background**:
+
+![Bg random 45](figures/45randBGgood.pdf)
 
 ---
 
-## 📈 Key Findings
+## 📊 SNR Evaluation – Strategy Comparison
 
-- **Random subsampling** down to 11–12.5% (approx. 45–50 positions) preserved major spectral features in broader cracks (S1).
-- Narrow crack regions (S2) required higher sampling densities (>45 points) to maintain acceptable SNR.
-- **White-light** and **grid sampling** approaches showed variable robustness depending on feature scale.
+Boxplot showing SNR distributions across all subsampling strategies (Random, Grid, WL) and signal regions:
 
-> "Compressed sampling allows acquisition time reduction of up to 90% while retaining usable spectral information for broader features. Critical fine structures require denser sampling."
+![SNR Sampling Boxplot](figures/SNRSamplingvBox.pdf)
 
-Full experimental results and interpretations are detailed in [`thesis/BSc_BV.pdf`](../thesis/BSc_BV.pdf).
+- **Random** retains high SNR in S1 with fewer samples.
+- **S2** shows more rapid SNR degradation at low sampling densities.
 
 ---
 
-## 🛠️ Technologies Used
+## 📈 Spatial Feature Reconstruction
 
-- Python 3.x
-- Jupyter Notebooks
+### Grid Subsampling – Intensity and Peak Position Maps
+
+![Grid Max Intensity](figures/grid cm maxI.PNG)
+![Grid Peak Position](figures/grid cm peakposition.PNG)
+
+### White-Light Subsampling – Peak Position Map
+
+![White-Light Peak Map](figures/HSA cm peakposition.PNG)
+
+---
+
+## 🌐 Full Topographic Context
+
+The full hyperspectral topography (overview):
+
+![Topographic Map](figures/hyper(topo).png)
+
+---
+
+## 🔎 Key Findings
+
+> "Random subsampling down to ~11–12.5% (45–50 positions) preserved key spectral features in wide crack regions (S1).  
+Fine structure areas (S2) required denser sampling (>15%) to retain detail.  
+Grid and white-light methods were less robust in S2 but more consistent across broader areas."
+
+---
+
+## 🛠 Tools Used
+
+- Python 3.x, Jupyter Notebooks
 - NumPy, SciPy, Matplotlib, Pandas
-- Gwyddion (external data pre-processing)
-- MATLAB (auxiliary data verification)
+- MATLAB (auxiliary comparison), Gwyddion (preprocessing)
 
 ---
 
-## 🧩 Example Usage
-
-Clone this repository and open any notebook:
+## 🧩 Getting Started
 
 ```bash
 git clone https://github.com/yourusername/nanoFTIR_SiC_CompressedSampling.git
@@ -104,17 +137,15 @@ jupyter notebook Random-Subsampling_45.ipynb
 
 ---
 
-## 📜 License
+## 📜 License & Citation
 
-This project is distributed under the MIT License.
-
+MIT License  
 > Vinatzer, B. (2021). *Compressed Sensing in nano-FTIR Spectroscopy*. Bachelor's thesis, Humboldt-Universität zu Berlin / PTB Berlin.
 
 ---
 
 ## 🙋‍♀️ Author
 
-**Barbara Vinatzer**   
+**Barbara Vinatzer**  
+Research Associate @ TU Dresden (SynoSys)  
 [GitHub](https://github.com/Batuffola)
-
----
