@@ -1,48 +1,121 @@
-# Compressed Sensing in nano-FTIR Spectroscopy of SiC Microchips (Defect Analysis)
+# Compressed Sensing in nano-FTIR Spectroscopy of SiC Microchips
 
-This repository documents a Bachelor’s thesis project on the application of compressed sensing and optimized sampling techniques in nano-FTIR spectroscopy of SiC microchip structures, conducted at the Physikalisch-Technische Bundesanstalt (PTB), Berlin.
+This repository documents selected analysis workflows developed during my Bachelor's thesis at the Physikalisch-Technische Bundesanstalt (PTB) and Freie Universität Berlin.  
+The research focuses on applying **compressed sensing** techniques in **nano-FTIR spectroscopy** of **SiC microchip structures**, utilizing synchrotron-based infrared radiation (BESSY II) to enhance spatial and spectral resolution.
 
-## 🔬 Project Overview
+---
 
-Using synchrotron IR radiation (BESSY II), hyperspectral interferograms of microstructured SiC samples were acquired. The project investigates how various compressed sampling strategies (random, grid, equidistant, white-light) affect:
+## 📚 Project Overview
 
-- Reconstruction accuracy
-- Signal-to-noise ratio (SNR)
-- Measurement time
+The goal was to investigate how **random subsampling** of interferometric measurement points impacts the quality of reconstructed nano-FTIR spectra. The objective was to **optimize measurement time** while preserving **signal integrity** in reconstructed data.
 
-## 📂 Contents
+Measurements were conducted under **Strahlenschutz (radiation safety)** protocols with synchrotron IR sources.
 
-- `notebooks/` – All main analysis Jupyter notebooks
-  - `Random-Subsampling_X.ipynb`: Subsampling + Fourier reconstruction
-  - `SNR-Verteilungen.ipynb`: Comparison of SNR distributions
-- `data/` – Reduced datasets and computed SNR values (NumPy arrays)
-- `sampling_results/` – Foldered results by sampling strategy and parameters
-- `thesis/` – Optional PDF version of the BSc thesis (if license/consent allows)
+---
 
-## 📈 Techniques Used
+## 📁 Repository Structure
 
-- Python (NumPy, SciPy, Matplotlib, Seaborn)
-- Fourier Transform & interferogram reconstruction
-- Custom SNR metrics
-- Compression ratio testing and error visualization
-- Radiation-safe lab measurements using s-SNOM and BESSY II beamline
+```bash
+notebooks/
+├── Random-Subsampling_20.ipynb
+├── Random-Subsampling_30.ipynb
+├── Random-Subsampling_40.ipynb
+├── Random-Subsampling_45.ipynb
+├── Random-Subsampling_50.ipynb
+├── Random-Subsampling_60.ipynb
+├── Random Subsampling SNR-Distribution.ipynb
+├── Grid_Subsampling_45.ipynb
+├── Equidistant Subsampling_45.ipynb
+├── White-Light Subsampling_45.ipynb
+├── Compressed Measurements/
+│   └── [Exploratory notebooks: grid, random, white-light comparisons]
+thesis/
+└── BSc_BV.pdf
+```
 
-## 🧠 Key Findings
+---
 
-- Random subsampling down to 20–30% retained spectral peak integrity for key resonance bands
-- SNR begins to drop nonlinearly below ~25% sampling rate
-- Compressed sensing strategies can reduce acquisition time up to 90% with acceptable reconstruction quality
+## 🎯 Objectives
 
-## 📘 Citation
+- Determine the minimum number of interferometer positions necessary to achieve reliable spectral reconstructions.
+- Quantify the impact of different **subsampling strategies** on spectral quality.
+- Evaluate signal-to-noise ratios (SNR) in regions of interest (e.g., cracks in SiC structures).
 
-If using this work in a publication or reference, please cite:
-> Vinatzer, B. (2021). *Compressed Sensing in nano-FTIR Spectroscopy*. Bachelor’s thesis, Humboldt-Universität zu Berlin / PTB Berlin.
+---
 
-## ⚠️ Disclaimer
+## 🧪 Subsampling Strategies Evaluated
 
-This repository includes sample data only. Full experimental datasets can be shared upon request (subject to approval). Thesis document available in `/thesis/` for academic purposes.
+| Strategy            | Description |
+|---------------------|--------------|
+| **Random**           | Randomly selected interferometer points (20–60 out of 400) |
+| **Grid**             | Regularly spaced points (grid sampling) |
+| **Equidistant**      | Uniform sampling intervals |
+| **White-Light**      | Sampling aligned with white-light fringe positions |
+
+Each strategy was tested across multiple sampling densities, including 5%, 7.5%, 10%, 11.25%, 12.5%, and 15% of the full interferogram.
+
+---
+
+## 📊 Analysis Overview
+
+Each notebook demonstrates:
+
+- Loading and preprocessing of interferograms
+- Application of compressed sensing reconstruction
+- Visualization of peak maps and spectral reconstructions
+- Signal-to-noise ratio (SNR) analysis across two primary feature regions (S1 and S2) and background (Bg)
+- Comparative boxplots summarizing SNR behavior under different sampling densities
+
+The notebook `Random Subsampling SNR-Distribution.ipynb` compares random sampling strategies across all tested densities.
+
+---
+
+## 📈 Key Findings
+
+- **Random subsampling** down to 11–12.5% (approx. 45–50 positions) preserved major spectral features in broader cracks (S1).
+- Narrow crack regions (S2) required higher sampling densities (>45 points) to maintain acceptable SNR.
+- **White-light** and **grid sampling** approaches showed variable robustness depending on feature scale.
+
+> "Compressed sampling allows acquisition time reduction of up to 90% while retaining usable spectral information for broader features. Critical fine structures require denser sampling."
+
+Full experimental results and interpretations are detailed in [`thesis/BSc_BV.pdf`](../thesis/BSc_BV.pdf).
+
+---
+
+## 🛠️ Technologies Used
+
+- Python 3.x
+- Jupyter Notebooks
+- NumPy, SciPy, Matplotlib, Pandas
+- Gwyddion (external data pre-processing)
+- MATLAB (auxiliary data verification)
+
+---
+
+## 🧩 Example Usage
+
+Clone this repository and open any notebook:
+
+```bash
+git clone https://github.com/yourusername/nanoFTIR_SiC_CompressedSampling.git
+cd notebooks/
+jupyter notebook Random-Subsampling_45.ipynb
+```
+
+---
 
 ## 📜 License
 
-MIT License or academic use only — depending on your preference.
+This project is distributed under the MIT License.
 
+> Vinatzer, B. (2021). *Compressed Sensing in nano-FTIR Spectroscopy*. Bachelor's thesis, Humboldt-Universität zu Berlin / PTB Berlin.
+
+---
+
+## 🙋‍♀️ Author
+
+**Barbara Vinatzer**  
+Research Associate @ TU Dresden (SynoSys)  
+[GitHub](https://github.com/Batuffola)
+
+---
