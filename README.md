@@ -114,8 +114,7 @@ This project is distributed under the MIT License.
 
 ## 🙋‍♀️ Author
 
-**Barbara Vinatzer**  
-Research Associate @ TU Dresden (SynoSys)  
+**Barbara Vinatzer**   
 [GitHub](https://github.com/Batuffola)
 
 ---
