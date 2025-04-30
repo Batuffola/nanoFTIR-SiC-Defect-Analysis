@@ -23,15 +23,7 @@ notebooks/
 ├── Compressed Measurements/
 │   └── [Exploratory notebooks]
 figures/
-├── Regionen S Bg.png
-├── 45randS1good.pdf
-├── 45randS2good.pdf
-├── 45randBGgood.pdf
-├── SNRSamplingvBox.pdf
-├── grid cm maxI.PNG
-├── grid cm peakposition.PNG
-├── HSA cm peakposition.PNG
-├── hyper(topo).png
+├── [All plots & image figures]
 thesis/
 └── BSc_BV.pdf
 ```
@@ -47,7 +39,7 @@ To assess reconstruction quality, three key spatial regions were defined:
 
 This segmentation is shown in the region map below:
 
-![Signal Region Map](Figures/Regionen S Bg.png)
+![Signal Region Map](Figures/regions_s_bg.png)
 
 ---
 
@@ -65,17 +57,14 @@ This segmentation is shown in the region map below:
 
 Reconstruction of example spectra from each region using 45 randomly selected interferometer points.
 
-- **S1 – Broad crack** (high fidelity):
+- **S1 – Broad crack** (high fidelity):  
+  ![S1 random 45](Figures/45randS1good.png)
 
-![S1 random 45](figures/45randS1good.pdf)
+- **S2 – Narrow crack** (finer detail loss):  
+  ![S2 random 45](Figures/45randS2good.png)
 
-- **S2 – Narrow crack** (finer detail loss):
-
-![S2 random 45](figures/45randS2good.pdf)
-
-- **Bg – Background**:
-
-![Bg random 45](figures/45randBGgood.pdf)
+- **Bg – Background**:  
+  ![Bg random 45](Figures/45randBGgood.png)
 
 ---
 
@@ -83,10 +72,61 @@ Reconstruction of example spectra from each region using 45 randomly selected in
 
 Boxplot showing SNR distributions across all subsampling strategies (Random, Grid, WL) and signal regions:
 
-![SNR Sampling Boxplot](figures/SNRSamplingvBox.pdf)
+![SNR Sampling Boxplot](Figures/SNRSamplingvBox.png)
 
 - **Random** retains high SNR in S1 with fewer samples.
 - **S2** shows more rapid SNR degradation at low sampling densities.
+
+---
+
+## 🔬 Simulated Subsampling – Best vs Worst Reconstructions
+
+The following images show simulation-based comparisons of **reconstructed vs original interferograms and spectra** for different signal regions (S1, S2, Bg).  
+Each figure shows the **best reconstruction (left)** and **worst reconstruction (right)** for the given **sampling strategy**.
+
+---
+
+### 🔁 Random Subsampling – Signal Regions
+
+**S1 – Broad Crack (Random Sampling)**  
+![S1 Random](Figures/S1rand.png)
+
+**S2 – Narrow Crack (Random Sampling)**  
+![S2 Random](Figures/S2rand.png)
+
+**Background (Random Sampling)**  
+![BG Random](Figures/BGrand.png)
+
+---
+
+### 🧩 Grid Subsampling – Signal Regions
+
+**S1 – Broad Crack (Grid Sampling)**  
+![S1 Grid](Figures/S1grid.png)
+
+**S2 – Narrow Crack (Grid Sampling)**  
+![S2 Grid](Figures/S2grid.png)
+
+**Background (Grid Sampling)**  
+![BG Grid](Figures/BGgrid.png)
+
+---
+
+### 💡 White-Light Sampling – Signal Regions
+
+**S1 – Broad Crack (WL Sampling)**  
+![S1 WL](Figures/S1WL.png)
+
+**S2 – Narrow Crack (WL Sampling)**  
+![S2 WL](Figures/S2WL.png)
+
+**Background (WL Sampling)**  
+![BG WL](Figures/BGWL.png)
+
+---
+
+Each panel compares the **subsampled points** (blue), **reconstructed signal** (black line), and **original measurement** (red dashed line).  
+These synthetic tests allow direct comparison of how robust each method is against information loss in different signal environments.
 
 ---
 
@@ -94,12 +134,12 @@ Boxplot showing SNR distributions across all subsampling strategies (Random, Gri
 
 ### Grid Subsampling – Intensity and Peak Position Maps
 
-![Grid Max Intensity](figures/grid cm maxI.PNG)
-![Grid Peak Position](figures/grid cm peakposition.PNG)
+![Grid Max Intensity](Figures/grid_cm_maxI.png)  
+![Grid Peak Position](Figures/grid_cm_peakposition.png)
 
 ### White-Light Subsampling – Peak Position Map
 
-![White-Light Peak Map](figures/HSA cm peakposition.PNG)
+![White-Light Peak Map](Figures/HSA_cm_peakposition.png) 
 
 ---
 
@@ -107,7 +147,7 @@ Boxplot showing SNR distributions across all subsampling strategies (Random, Gri
 
 The full hyperspectral topography (overview):
 
-![Topographic Map](figures/hyper(topo).png)
+![Topographic Map](Figures/hyper(topo).png)
 
 ---
 
