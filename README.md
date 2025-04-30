@@ -1,6 +1,6 @@
 # Compressed Sensing in nano-FTIR Spectroscopy of SiC Microchips
 
-This repository presents selected analysis workflows developed during my Bachelor's thesis at the Physikalisch-Technische Bundesanstalt (PTB) and Freie Universität Berlin.  
+This repository presents selected analysis workflows developed during my Bachelor's thesis under the supervision of **Prof. Bernd Kästner** and **Prof. Eckart Rühl**, at the Physikalisch-Technische Bundesanstalt (PTB) and Freie Universität Berlin.    
 The research focuses on applying **compressed sensing** techniques in **nano-FTIR spectroscopy** of **SiC microchip structures**, utilizing synchrotron-based infrared radiation (BESSY II) to enhance spatial and spectral resolution.
 
 ---
@@ -10,6 +10,18 @@ The research focuses on applying **compressed sensing** techniques in **nano-FTI
 The goal was to investigate how **random and structured subsampling** of interferometric measurement points affects the quality of reconstructed nano-FTIR spectra. The objective was to **reduce measurement time** while preserving **signal integrity** in reconstructed data.
 
 Measurements were conducted under **Strahlenschutz (radiation safety)** protocols with synchrotron IR sources.
+
+---
+
+## 🧪 Experimental Data Context
+
+This project is based on real interferometric measurements conducted during a Bachelor’s thesis project at PTB Berlin using **infrared synchrotron radiation from BESSY II**.
+
+- Measurements were performed on **SiC microchip samples** using a nano-FTIR setup operated in a **radiation-controlled environment**.
+- The interferograms were collected across hundreds of interferometer positions per pixel (typically **400 points** per scan).
+- Spectral data was reconstructed using **Fourier analysis**, and further evaluated with custom Python workflows for **compressed sensing**.
+
+For full experimental context, see [`thesis/BSc_BV.pdf`](thesis/BSc_BV.pdf).
 
 ---
 
@@ -88,66 +100,68 @@ Each figure shows the **best reconstruction (left)** and **worst reconstruction 
 
 ### 🔁 Random Subsampling – Signal Regions
 
-**S1 – Broad Crack (Random Sampling)**  
-![S1 Random](Figures/S1rand.png)
-
-**S2 – Narrow Crack (Random Sampling)**  
-![S2 Random](Figures/S2rand.png)
-
-**Background (Random Sampling)**  
+![S1 Random](Figures/S1rand.png)  
+![S2 Random](Figures/S2rand.png)  
 ![BG Random](Figures/BGrand.png)
 
 ---
 
 ### 🧩 Grid Subsampling – Signal Regions
 
-**S1 – Broad Crack (Grid Sampling)**  
-![S1 Grid](Figures/S1grid.png)
-
-**S2 – Narrow Crack (Grid Sampling)**  
-![S2 Grid](Figures/S2grid.png)
-
-**Background (Grid Sampling)**  
+![S1 Grid](Figures/S1grid.png)  
+![S2 Grid](Figures/S2grid.png)  
 ![BG Grid](Figures/BGgrid.png)
 
 ---
 
 ### 💡 White-Light Sampling – Signal Regions
 
-**S1 – Broad Crack (WL Sampling)**  
-![S1 WL](Figures/S1WL.png)
-
-**S2 – Narrow Crack (WL Sampling)**  
-![S2 WL](Figures/S2WL.png)
-
-**Background (WL Sampling)**  
+![S1 WL](Figures/S1WL.png)  
+![S2 WL](Figures/S2WL.png)  
 ![BG WL](Figures/BGWL.png)
 
 ---
 
-Each panel compares the **subsampled points** (blue), **reconstructed signal** (black line), and **original measurement** (red dashed line).  
-These synthetic tests allow direct comparison of how robust each method is against information loss in different signal environments.
+## 📷 Real Compressed Measurements (nano-FTIR)
+
+In addition to simulations, this project includes real-world compressed measurements conducted on SiC microchip samples using the **nano-FTIR setup at PTB Berlin** with **IR synchrotron radiation** from BESSY II.
+
+### Overview
+
+These measurements were not fully sampled and cropped post hoc — instead, they were **intentionally subsampled** during acquisition using different strategies (e.g., white-light aligned, grid, or equidistant sampling patterns).
+
+- Interferograms were directly acquired at **subsampled interferometer positions**.
+- Spectral reconstructions were compared to a fully sampled reference.
+- Evaluations were performed on both **peak amplitude** and **peak position** accuracy.
 
 ---
 
-## 📈 Spatial Feature Reconstruction
+### 🌐 Spatial Overview – Peak Maps
 
-### Grid Subsampling – Intensity and Peak Position Maps
-
-![Grid Max Intensity](Figures/gridcmmaxI.png)  
-![Grid Peak Position](Figures/gridcmpeakposition.png)
-
-### White-Light Subsampling – Peak Position Map
-
-![White-Light Peak Map](Figures/HSAcmpeakposition.png) 
+**White-Light Subsampling (45 points)**  
+![WL cm Max Intensity](Figures/WLcmmaxI.png)  
+![WL Peak Position](Figures/WLcmpeakposition.png)  
+![WL Spectra](Figures/WLspektra.png)
 
 ---
 
-## 🌐 Full Topographic Context
+### 📈 Grid Subsampling – Real Measurement
 
-The full hyperspectral topography (overview):
+**Grid Max Intensity Map (45 points)**  
+![Grid Max Intensity](Figures/HSAcmmaxI.png)  
+![Grid Spectra](Figures/gridspektra.png)
 
-![Topographic Map](Figures/hyper(topo).png)
+---
+
+### 📌 Interpretation from Thesis
+
+- The Grid-Sampling measurement lasted **2h 35min**, but due to a **24-hour delay**, the scan captured a **region offset from the original indent**.
+- Positional **drift over time** (especially between submatrices) led to spatial mismatch and artifacts (e.g. chessboard pattern).
+- Despite this, **spectral reconstructions were still meaningful**, preserving the main SiC resonances.
+- In contrast, **White-Light sampling was properly realigned** and more spatially accurate.
+- Its optimized sampling scheme preserved major peak structures with only 25% of the full acquisition time.
+
+See: **Kapitel 5.1.2 – Komprimierte reale Messdaten**, [`BSc_BV.pdf`](thesis/BSc_BV.pdf)
 
 ---
 
@@ -186,6 +200,5 @@ MIT License
 
 ## 🙋‍♀️ Author
 
-**Barbara Vinatzer**  
-Research Associate @ TU Dresden (SynoSys)  
+**Barbara Vinatzer**   
 [GitHub](https://github.com/Batuffola)
