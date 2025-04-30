@@ -134,12 +134,12 @@ These synthetic tests allow direct comparison of how robust each method is again
 
 ### Grid Subsampling – Intensity and Peak Position Maps
 
-![Grid Max Intensity](Figures/grid_cm_maxI.png)  
-![Grid Peak Position](Figures/grid_cm_peakposition.png)
+![Grid Max Intensity](Figures/gridcmmaxI.png)  
+![Grid Peak Position](Figures/gridcmpeakposition.png)
 
 ### White-Light Subsampling – Peak Position Map
 
-![White-Light Peak Map](Figures/HSA_cm_peakposition.png) 
+![White-Light Peak Map](Figures/HSAcmpeakposition.png) 
 
 ---
 
