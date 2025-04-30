@@ -120,48 +120,67 @@ Each figure shows the **best reconstruction (left)** and **worst reconstruction 
 ![S2 WL](Figures/S2WL.png)  
 ![BG WL](Figures/BGWL.png)
 
----
+---## 📷 Real Compressed Measurements (nano-FTIR)
 
-## 📷 Real Compressed Measurements (nano-FTIR)
+In addition to synthetic simulations, this repository also includes real-world compressed measurements on a SiC microchip using a nano-FTIR setup at PTB Berlin. These measurements were acquired with **hardware-level subsampling** using synchrotron IR radiation (BESSY II) and provide a critical benchmark for testing the effectiveness of Grid and White-Light (WL) sampling strategies.
 
-In addition to simulations, this project includes real-world compressed measurements conducted on SiC microchip samples using the **nano-FTIR setup at PTB Berlin** with **IR synchrotron radiation** from BESSY II.
+### 🔁 Grid-Sampling Measurement
 
-### Overview
+A compressed grid-sampling scan was performed across a SiC indent area and lasted **2h 35min**, reducing the measurement time by more than 50%. However, due to a **6-hour delay between region selection and scanning**, spatial drift occurred — evident from a **checkerboard pattern** in the reconstructed maps.
 
-These measurements were not fully sampled and cropped post hoc — instead, they were **intentionally subsampled** during acquisition using different strategies (e.g., white-light aligned, grid, or equidistant sampling patterns).
+**Comparison of Grid vs. Full Measurement:**
 
-- Interferograms were directly acquired at **subsampled interferometer positions**.
-- Spectral reconstructions were compared to a fully sampled reference.
-- Evaluations were performed on both **peak amplitude** and **peak position** accuracy.
+<table>
+<tr>
+<td><b>Grid Sampling</b><br><img src="Figures/gridcmmaxI.png" width="300"></td>
+<td><b>Full Measurement</b><br><img src="Figures/HSAcmmaxI.png" width="300"></td>
+</tr>
+<tr>
+<td><b>Grid Peak Map</b><br><img src="Figures/gridcmpeakposition.png" width="300"></td>
+<td><b>Full Peak Map</b><br><img src="Figures/HSAcmpeakposition.png" width="300"></td>
+</tr>
+</table>
 
----
+Despite spatial mismatch, the spectral reconstructions below still clearly retain the SiC resonance features:
 
-### 🌐 Spatial Overview – Peak Maps
-
-**White-Light Subsampling (45 points)**  
-![WL cm Max Intensity](Figures/WLcmmaxI.png)  
-![WL Peak Position](Figures/WLcmpeakposition.png)  
-![WL Spectra](Figures/WLspektra.png)
-
----
-
-### 📈 Grid Subsampling – Real Measurement
-
-**Grid Max Intensity Map (45 points)**  
-![Grid Max Intensity](Figures/HSAcmmaxI.png)  
-![Grid Spectra](Figures/gridspektra.png)
+![Grid Spectral Comparison](Figures/gridspektra.png)
 
 ---
 
-### 📌 Interpretation from Thesis
+### 💡 White-Light Sampling Measurement
 
-- The Grid-Sampling measurement lasted **2h 35min**, but due to a **24-hour delay**, the scan captured a **region offset from the original indent**.
-- Positional **drift over time** (especially between submatrices) led to spatial mismatch and artifacts (e.g. chessboard pattern).
-- Despite this, **spectral reconstructions were still meaningful**, preserving the main SiC resonances.
-- In contrast, **White-Light sampling was properly realigned** and more spatially accurate.
-- Its optimized sampling scheme preserved major peak structures with only 25% of the full acquisition time.
+A WL-Random compressed measurement was aligned **without drift**, matching the full region used earlier. It used empirically derived **"magic number" interferometer positions** and achieved results with **only 25%** of the full measurement time (~1h 25min).
 
-See: **Kapitel 5.1.2 – Komprimierte reale Messdaten**, [`BSc_BV.pdf`](thesis/BSc_BV.pdf)
+**White-Light Maxima and Peak Position Maps:**
+
+<table>
+<tr>
+<td><b>WL Max Amplitude</b><br><img src="Figures/WLcmmaxI.png" width="300"></td>
+<td><b>Full Measurement</b><br><img src="Figures/HSAcmmaxI.png" width="300"></td>
+</tr>
+<tr>
+<td><b>WL Peak Positions</b><br><img src="Figures/WLcmpeakposition.png" width="300"></td>
+<td><b>Full Peak Map</b><br><img src="Figures/HSAcmpeakposition.png" width="300"></td>
+</tr>
+</table>
+
+WL-sampled spectra emphasized **major peaks** and smoothed the background but failed to recover finer resonances:
+
+![White-Light Spectral Comparison](Figures/WLspektra.png)
+
+---
+
+### 🧠 Summary from Thesis
+
+- Grid Sampling showed good spectral reconstruction **despite spatial drift**, proving robustness of spectral content.
+- WL Sampling preserved **broader spatial structures** and suppressed noise, but was sensitive to peak shifts and did not resolve finer cracks.
+- Measurement strategies represent a **trade-off between speed, spatial fidelity, and reconstruction quality**.
+- Thermal drift between scan initiation and execution can significantly affect positional accuracy — emphasizing the importance of **synchronized acquisition**.
+
+See: **Chapter 5.2 in [`BSc_BV.pdf`](thesis/BSc_BV.pdf)** for deeper insight and figures.
+
+---
+
 
 ---
 
